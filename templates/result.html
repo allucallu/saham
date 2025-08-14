@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hasil Prediksi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <div class="card shadow p-4">
+        <h2 class="mb-4">Hasil Prediksi</h2>
+        <p><strong>Tanggal Target:</strong> {{ target_date }}</p>
+        <p><strong>Prediksi Harga:</strong> {{ "%.2f"|format(predicted_price) }}</p>
+
+        {% if actual_price %}
+            <p><strong>Harga Aktual:</strong> {{ "%.2f"|format(actual_price) }}</p>
+            <p><strong>MAPE:</strong> {{ "%.2f"|format(mape) }}%</p>
+        {% endif %}
+
+        <img src="{{ url_for('static', filename='plot.png') }}" alt="Grafik Prediksi" style="max-width: 100%;">
+
+        <br><br>
+        <a class="btn btn-warning" href="{{ url_for('index') }}">Kembali</a>
+    </div>
+</div>
+</body>
+</html>
